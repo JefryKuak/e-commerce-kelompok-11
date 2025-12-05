@@ -22,9 +22,11 @@
         </div>
 
         <ul class="nav-links">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Produk</a></li>
-            <li><a href="#">Pesanan</a></li>
+            <li><a href="#" class="nav-link">Store Registration</a></li>
+            <li><a href="#" class="nav-link">Orders</a></li>
+            <li><a href="#" class="nav-link">Store Balance</a></li>
+            <li><a href="#" class="nav-link">Withdrawals</a></li>
+            <li><a href="#" class="nav-link">Store Management</a></li>
         </ul>
 
         <div class="nav-right">

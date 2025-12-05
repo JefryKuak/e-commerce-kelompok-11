@@ -14,33 +14,16 @@ html, body {
 /* NAVBAR */
 .seller-navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     background: #ffffff;
     border-bottom: 1px solid #e0e0e0;
     padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-.nav-left, .nav-links, .nav-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-/* Kiri: logo + menu */
-.nav-left {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
 }
 
 .nav-logo {
@@ -58,18 +41,32 @@ html, body {
 }
 
 .nav-links {
+    flex: 0 0 auto;       /* <— INI KUNCI UTAMANYA */
     display: flex;
-    justify-content: center !important;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;             /* biar lebih rapi */
     list-style: none;
 }
 
+.nav-links li {
+    display: flex;
+    justify-content: center;
+}
+
 .nav-links a {
+    display: flex;
+    flex-direction: column; /* Biar teks 2 baris rapi */
+    align-items: center;
+    text-align: center;
+    padding: 4px 14px;       /* Ganti width fixed → padding */
+    white-space: normal;
+    line-height: 1.2;
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    color: #000000; /* MENU NAVBAR JADI HITAM */
+    color: #000;
     transition: 0.2s;
 }
 
@@ -77,12 +74,21 @@ html, body {
     color: #0667d0; /* Hover biru biar konsisten */
 }
 
+
+/* Kiri: logo + menu */
+.nav-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 /* Kanan: search + profil */
 .nav-right {
+    flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 16px;
 }
 
 .nav-search {
