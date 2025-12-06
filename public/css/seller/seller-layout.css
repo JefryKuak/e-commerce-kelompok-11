@@ -26,26 +26,33 @@ html, body {
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
+/* LEFT SIDE */
+.nav-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 28px;
+}
+
 .nav-logo {
     font-family: "Montserrat", sans-serif;
     font-weight: 800;
     font-size: 26px;
-    color: #0667d0; /* LOGO TETAP BIRU */
+    color: #0667d0;
     text-decoration: none;
 }
 
 .logo-img {
-    height: 35px;  /* kecil & proporsional */
+    height: 35px;
     width: auto;
     object-fit: contain;
 }
 
+/* NAV LINKS */
 .nav-links {
-    flex: 0 0 auto;       /* <— INI KUNCI UTAMANYA */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;             /* biar lebih rapi */
+    gap: 12px;
     list-style: none;
 }
 
@@ -56,10 +63,10 @@ html, body {
 
 .nav-links a {
     display: flex;
-    flex-direction: column; /* Biar teks 2 baris rapi */
+    flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 4px 14px;       /* Ganti width fixed → padding */
+    padding: 4px 14px;
     white-space: normal;
     line-height: 1.2;
     text-decoration: none;
@@ -71,30 +78,21 @@ html, body {
 }
 
 .nav-links a:hover {
-    color: #0667d0; /* Hover biru biar konsisten */
+    color: #0667d0;
 }
 
-
-/* Kiri: logo + menu */
-.nav-left {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-/* Kanan: search + profil */
+/* RIGHT SIDE */
 .nav-right {
     flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 16px;
 }
 
 .nav-search {
     position: relative;
 }
-
 
 .nav-search input {
     padding: 10px 36px 10px 14px;
@@ -116,10 +114,17 @@ html, body {
     opacity: 0.7;
 }
 
+.nav-profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #ccc;
+}
+
 /* FOOTER */
 .footer {
-    background: #0667d0; /* FOOTER BIRU */
-    color: #ffffff;       /* TEKS PUTIH */
+    background: #0667d0;
+    color: #ffffff;
     padding: 40px 20px;
     font-size: 14px;
 }
@@ -139,12 +144,12 @@ html, body {
 }
 
 .footer a {
-    color: #ffffff; /* LINK PUTIH */
+    color: #ffffff;
     text-decoration: none;
 }
 
 .footer a:hover {
-    color: #dfefff; /* PUTIH LEBIH MUDA WAKTU HOVER */
+    color: #dfefff;
 }
 
 /* Responsive */
@@ -155,24 +160,28 @@ html, body {
         gap: 12px;
         padding: 16px 16px;
     }
+
     .nav-left {
         flex-wrap: wrap;
         justify-content: space-between;
         gap: 12px;
     }
+
     .nav-links {
         flex-wrap: wrap;
         justify-content: flex-start;
         gap: 12px;
-        list-style: none;
     }
+
     .nav-right {
         justify-content: flex-start;
         gap: 12px;
     }
+
     .nav-search input {
         width: 100%;
     }
+
     .footer .foot-inner {
         flex-direction: column;
         gap: 24px;

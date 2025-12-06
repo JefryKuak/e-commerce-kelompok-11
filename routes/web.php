@@ -6,7 +6,7 @@ use App\Http\Controllers\Seller\SellerDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.index');
 });
 
 Route::get('/dashboard', function () {

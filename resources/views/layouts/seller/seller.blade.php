@@ -17,7 +17,7 @@
 
         <div class="nav-left">
             <a href="#" class="nav-logo">
-                <img src="{{ asset('assets/img/logo-techly.png') }}" class="logo-img" alt="Techly Logo">
+                <img src="{{ asset('img/logo-techly.png') }}" class="logo-img" alt="Techly Logo">
             </a>
         </div>
 
@@ -32,7 +32,7 @@
         <div class="nav-right">
             <div class="nav-search">
                 <input type="text" placeholder="Cari produk...">
-                 <img src="{{ asset('assets/img/search-icon.svg') }}" class="search-icon">
+                 <img src="{{ asset('img/search-icon.svg') }}" class="search-icon">
                 <i class="fa fa-search"></i>
             </div>
         </div>
