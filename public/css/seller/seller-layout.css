@@ -1,147 +1,229 @@
-/* Reset & box-sizing */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html, body {
-    width: 100%;
-    overflow-x: hidden;
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-/* NAVBAR */
-.seller-navbar {
-    width: 100%;
-    background: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 20px 40px; /* lebih tinggi */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-/* Kiri: logo + menu */
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 28px; /* lebih lega */
-}
-
-.nav-logo {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 800;
-    font-size: 26px; /* lebih besar */
-    color: #111;
-    text-decoration: none;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-}
-
-.nav-links a {
-    text-decoration: none;
-    font-family: "Montserrat", sans-serif;
-    font-size: 16px; /* lebih besar */
-    font-weight: 500;
-    color: #333;
-    transition: 0.2s;
-}
-
-.nav-links a:hover {
-    color: #007bff;
-}
-
-/* Kanan: search + profil */
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.nav-search input {
-    padding: 10px 36px 10px 14px;
-    border-radius: 999px;
-    border: 1px solid #e0e0e0;
-    font-size: 15px;
-    width: 220px;
-    max-width: 100%;
-}
-
-.nav-profile {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #ccc;
-}
-
-/* FOOTER */
-.footer {
-    background: #111; /* warna hitam */
-    color: #fff;
-    padding: 40px 20px;
-    font-size: 14px;
-}
-
-.footer .foot-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.footer .foot-inner div {
-    min-width: 200px;
-}
-
-.footer a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.footer a:hover {
-    color: #007bff;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-    .seller-navbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-        padding: 16px 16px;
-    }
-    .nav-left {
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 12px;
-    }
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 12px;
-    }
-    .nav-right {
-        justify-content: flex-start;
-        gap: 12px;
-    }
-    .nav-search input {
-        width: 100%;
-    }
-    .footer .foot-inner {
-        flex-direction: column;
-        gap: 24px;
-        text-align: center;
-    }
-}
+                /* Reset & box-sizing */
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        /* NAVBAR */
+        
+        .seller-navbar {
+            <<<<<<< HEAD display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 40px;
+            >>>>>>>origin/jefry position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        <<<<<<< HEAD
+        /* Kiri: logo + menu */
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            /* lebih lega */
+        }
+        
+        .nav-logo {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 800;
+            font-size: 26px;
+            /* lebih besar */
+            color: #111;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            font-family: "Montserrat", sans-serif;
+            font-size: 16px;
+            /* lebih besar */
+            font-weight: 500;
+            color: #333;
+            =======.nav-logo {
+                font-family: "Montserrat", sans-serif;
+                font-weight: 800;
+                font-size: 26px;
+                color: #0667d0;
+                /* LOGO TETAP BIRU */
+                text-decoration: none;
+            }
+            .logo-img {
+                height: 35px;
+                /* kecil & proporsional */
+                width: auto;
+                object-fit: contain;
+            }
+            .nav-links {
+                flex: 0 0 auto;
+                /* <— INI KUNCI UTAMANYA */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+                /* biar lebih rapi */
+                list-style: none;
+            }
+            .nav-links li {
+                display: flex;
+                justify-content: center;
+            }
+            .nav-links a {
+                display: flex;
+                flex-direction: column;
+                /* Biar teks 2 baris rapi */
+                align-items: center;
+                text-align: center;
+                padding: 4px 14px;
+                /* Ganti width fixed → padding */
+                white-space: normal;
+                line-height: 1.2;
+                text-decoration: none;
+                font-family: "Montserrat", sans-serif;
+                font-size: 15px;
+                font-weight: 500;
+                color: #000;
+                >>>>>>>origin/jefry transition: 0.2s;
+            }
+            .nav-links a:hover {
+                <<<<<<< HEAD color: #007bff;
+                =======color: #0667d0;
+                /* Hover biru biar konsisten */
+            }
+            /* Kiri: logo + menu */
+            .nav-left {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                >>>>>>>origin/jefry
+            }
+            /* Kanan: search + profil */
+            .nav-right {
+                <<<<<<< HEAD display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            .nav-search input {
+                padding: 10px 36px 10px 14px;
+                =======flex: 1;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            .nav-search {
+                position: relative;
+            }
+            .nav-search input {
+                padding: 10px 36px 10px 14px;
+                padding-right: 40px;
+                >>>>>>>origin/jefry border-radius: 999px;
+                border: 1px solid #e0e0e0;
+                font-size: 15px;
+                width: 220px;
+                max-width: 100%;
+            }
+            <<<<<<< HEAD .nav-profile {
+                width: 42px;
+                height: 42px;
+                border-radius: 50%;
+                background: #ccc;
+                =======.nav-search .search-icon {
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    height: 18px;
+                    width: 18px;
+                    opacity: 0.7;
+                    >>>>>>>origin/jefry
+                }
+                /* FOOTER */
+                .footer {
+                    <<<<<<< HEAD background: #111;
+                    /* warna hitam */
+                    color: #fff;
+                    =======background: #0667d0;
+                    /* FOOTER BIRU */
+                    color: #ffffff;
+                    /* TEKS PUTIH */
+                    >>>>>>>origin/jefry padding: 40px 20px;
+                    font-size: 14px;
+                }
+                .footer .foot-inner {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    display: flex;
+                    gap: 24px;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                }
+                .footer .foot-inner div {
+                    min-width: 200px;
+                }
+                .footer a {
+                    <<<<<<< HEAD color: #fff;
+                    =======color: #ffffff;
+                    /* LINK PUTIH */
+                    >>>>>>>origin/jefry text-decoration: none;
+                }
+                .footer a:hover {
+                    <<<<<<< HEAD color: #007bff;
+                    =======color: #dfefff;
+                    /* PUTIH LEBIH MUDA WAKTU HOVER */
+                    >>>>>>>origin/jefry
+                }
+                /* Responsive */
+                @media (max-width: 900px) {
+                    .seller-navbar {
+                        flex-direction: column;
+                        align-items: stretch;
+                        gap: 12px;
+                        padding: 16px 16px;
+                    }
+                    .nav-left {
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        gap: 12px;
+                    }
+                    .nav-links {
+                        flex-wrap: wrap;
+                        justify-content: flex-start;
+                        gap: 12px;
+                        <<<<<<< HEAD=======list-style: none;
+                        >>>>>>>origin/jefry
+                    }
+                    .nav-right {
+                        justify-content: flex-start;
+                        gap: 12px;
+                    }
+                    .nav-search input {
+                        width: 100%;
+                    }
+                    .footer .foot-inner {
+                        flex-direction: column;
+                        gap: 24px;
+                        text-align: center;
+                    }
+                }

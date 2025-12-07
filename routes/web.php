@@ -35,6 +35,8 @@ Route::middleware(['auth'])
     Route::post('/register-store', [SellerStoreController::class, 'store'])
         ->name('store.store');
 
+
+
 });
 
 require __DIR__.'/auth.php';
