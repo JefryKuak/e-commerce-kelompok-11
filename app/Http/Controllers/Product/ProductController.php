@@ -99,4 +99,21 @@ class ProductController extends Controller
             'average_rating' => $averageRating
         ]);
     }
+    /**
+     * GET /produk/{slug}
+     * Halaman detail produk (View)
+     */
+    public function detail($slug)
+    {
+        $product = Product::with([
+            'productCategory',
+            'store',
+            'productImages',
+            'productReviews.transaction.buyer.user'
+        ])
+        ->where('slug', $slug)
+        ->firstOrFail();
+
+        return view('user.detail', compact('product'));
+    }
 }

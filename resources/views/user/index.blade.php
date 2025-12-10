@@ -24,7 +24,7 @@
                         <a href="#categories" class="nav-link">Kategori</a>
                         <a href="#about" class="nav-link">Tentang</a>
 
-                        <a href="checkout.html" class="nav-link cart-link">
+                        <a href="{{ route('checkout.index') }}" class="nav-link cart-link">
                             <span class="cart-icon">🛒</span> Keranjang
                             <span class="cart-count">(0)</span>
                         </a>
@@ -51,9 +51,9 @@
                     <div class="hero-buttons hero-buttons-guest">
                         <div class="top-buttons">
                             <a href="{{ route('register') }}" class="btn btn-primary">📝 Daftar Sekarang</a>
-                            <a href="#products" class="btn btn-primary">🔍 Lihat Produk</a>
+                            <a href="#products" class="btn btn-primary">Lihat Produk</a>
                         </div>
-                        <a href="#categories" class="btn btn-secondary btn-middle">📂 Jelajahi Kategori</a>
+                        <a href="#categories" class="btn btn-secondary btn-middle">Jelajahi Kategori</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -78,8 +78,9 @@
                         <a href="#products" class="nav-link">Produk</a>
                         <a href="#categories" class="nav-link">Kategori</a>
                         <a href="#about" class="nav-link">Tentang</a>
+                        <a href="{{ route('history.index') }}" class="nav-link">Riwayat</a>
 
-                        <a href="checkout.html" class="nav-link cart-link">
+                        <a href="{{ route('checkout.index') }}" class="nav-link cart-link">
                             <span class="cart-icon">🛒</span> Keranjang
                             <span class="cart-count">(0)</span>
                         </a>
@@ -231,6 +232,7 @@
                 const priceB = parseFloat(b.getAttribute('data-price')) || 0;
                 const dateA = new Date(a.getAttribute('data-created'));
                 const dateB = new Date(b.getAttribute('data-created'));
+
 
                 switch (sort) {
                     case 'price-asc':

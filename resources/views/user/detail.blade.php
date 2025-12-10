@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Detail | Techly</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="detail.css" />
+    <link rel="stylesheet" href="{{ asset('css/landingpage/detail.css') }}">
 </head>
 
 <body>
@@ -15,56 +15,69 @@
     <header class="main-header">
         <div class="container header-content">
             <a href="index.html" class="logo">
-                <img src="logo.png" alt="Techly" class="logo-img" />
+            <img src="{{ asset('uploads/weblogo.png') }}" alt="Techly" class="logo-img">
             </a>
 
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="#categories">Kategori</a></li>
-                    <li><a href="#products">Produk</a></li>
-                    <li><a href="checkout.html">Keranjang</a></li>
+                    <li><a href="{{ route('home') }}">Beranda</a></li>
+                    <li><a href="#">Kategori</a></li>
+                    <li><a href="#">Produk</a></li>
+                    <li><a href="#">Keranjang</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+ 
+
+    <!-- ================= BREADCRUMB ================= -->
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="breadcrumb">
+            <a href="{{ route('home') }}" class="breadcrumb-item">Beranda</a>
+            <span class="breadcrumb-separator">&gt;</span>
+            <a href="#" class="breadcrumb-item">Produk</a>
+            <span class="breadcrumb-separator">&gt;</span>
+            <span class="breadcrumb-item active">{{ $product->name }}</span>
+        </div>
+    </div>
 
     <!-- ================= PRODUCT DETAIL ================= -->
-    <!-- ================= DETAIL PRODUK ================= -->
     <section class="product-detail container">
 
         <div class="product-gallery">
             <div class="thumbnail-list">
-                <img src="thumb-1.jpg" alt="Thumbnail 1" class="thumb-img active" />
-                <img src="thumb-2.jpg" alt="Thumbnail 2" class="thumb-img" />
-                <img src="thumb-3.jpg" alt="Thumbnail 3" class="thumb-img" />
+                <div class="thumbnail-wrapper">
+                    @foreach($product->productImages as $key => $image)
+                        <img src="{{ asset($image->image) }}" alt="Thumbnail {{ $key }}" class="thumb-img {{ $loop->first ? 'active' : '' }}" />
+                    @endforeach
+                </div>
             </div>
-
+            
             <div class="main-image-container">
-                <img src="product-sample.jpg" alt="Gambar Produk" class="main-img" />
+                <img src="{{ asset($product->productImages->first()->image ?? 'uploads/default.png') }}" alt="{{ $product->name }}" class="produk-img">
             </div>
         </div>
-
+        
         <div class="product-info">
 
             <div class="store-header">
                 <span class="store-badge"></span>
-                <h3 class="store-name">EVERNEXT PROJECT</h3>
-                <button class="follow-btn">Follow</button>
+                <h3 class="store-name">{{ $product->store->name ?? 'Toko' }}</h3>
+                <button class="follow-btn" id="follow-btn">IKUTI</button>
             </div>
             <div class="store-rating">
-                <span class="rating-star">⭐⭐</span>
-                <span class="rating-value">4.9</span>
-                <span class="rating-count">(130,4 rb)</span>
+                <span class="rating-star">⭐⭐⭐⭐</span>
+                <span class="rating-value">{{ number_format($average_rating ?? 4.9, 1) }}</span>
+                <span class="rating-count">({{ $product->productReviews->count() }})</span>
             </div>
-            <h1 class="product-title">Smartphone X Pro</h1>
-            <p class="product-category">Kategori: <strong>Smartphone</strong></p>
+            <h1 class="product-title">{{ $product->name }}</h1>
+            <p class="product-category">Kategori: <strong>{{ $product->productCategory->name ?? 'Umum' }}</strong></p>
 
             <p class="product-description">
-                Smartphone X Pro memberikan performa luar biasa dengan prosesor terbaru, layar super mulus, dan baterai tahan lama. Dirancang untuk kecepatan, gaya, dan keandalan sehari-hari.
+                {{ $product->description }}
             </p>
 
-            <div class="product-price">Rp 4.299.000</div>
+            <div class="product-price">Rp {{ number_format($product->price, 0, ',', '.') }}</div>
 
 
 
@@ -76,7 +89,14 @@
                     <input type="number" id="quantity" value="1" min="1" style="width: 50px; text-align:center;" />
                     <button type="button" id="plus-btn">+</button>
                 </div>
-                <button class="btn-add-cart" style="margin-top: 10px;">Tambahkan ke Keranjang</button>
+
+                <div class="button-group" style="display: flex; gap: 15px; margin-top: 25px;">
+                    <button class="btn-add-cart" style="margin-top: 0; flex: 1;">Tambahkan ke Keranjang</button>
+
+                    <a href="{{ route('checkout.index', ['product' => $product->id]) }}" class="btn-checkout" style="margin-top: 0; flex: 1; display: flex; align-items: center; justify-content: center;">
+                        Beli Sekarang
+                    </a>
+                </div>
             </div>
 
             <!-- ================= Fitur Ulasan ================= -->
@@ -90,6 +110,23 @@
     </section>
 
     <script>
+        // ================= Tombol Ikuti =================
+    const followBtn = document.getElementById('follow-btn');
+
+    if (followBtn) {
+        followBtn.addEventListener('click', () => {
+        followBtn.classList.toggle('is-following');
+
+        // Ubah teks tombol berdasarkan keberadaan class
+        if (followBtn.classList.contains('is-following')) {
+            followBtn.textContent = 'MENGIKUTI';
+            alert('Anda sekarang mengikuti toko GadgetHub Official Store!');
+        } else {
+            followBtn.textContent = 'IKUTI';
+            alert('Anda berhenti mengikuti toko GadgetHub Official Store.');
+        }
+    });
+}
         // ================= Quantity Add to Cart =================
         const quantityInput = document.getElementById('quantity');
         const plusBtn = document.getElementById('plus-btn');
@@ -128,6 +165,100 @@
             reviewsList.appendChild(reviewEl);
             reviewInput.value = '';
         });
+        
+        const thumbnaillist = document.querySelector('.thumbnail-list');
+        const leftArrow = document.querySelector('.left-arrow');
+        const rightArrow = document.querySelector('.right-arrow');
+        const scrollAmount = 100;
+
+        if (thumbnailList && rightArrow && leftArrow) {
+        rightArrow.addEventListener('click', () => {
+            thumbnailList.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        leftArrow.addEventListener('click', () => {
+            thumbnailList.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+
+    // ================= Main Image Switching =================
+    const mainImage = document.querySelector('.produk-img');
+    const thumbnails = document.querySelectorAll('.thumb-img');
+
+    if (mainImage && thumbnails.length > 0) {
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+                mainImage.src = thumb.src;
+            });
+        });
+    } 
+
+    // ================= Thumbnail Slider =================
+    const thumbnailList = document.querySelector('.thumbnail-list');
+    const wrapper = document.querySelector('.thumbnail-wrapper');
+    
+    // ================= Beli Sekarang Logic =================
+    const checkoutBtn = document.querySelector('.btn-checkout');
+    // Re-select quantity input to be safe
+    const qtyInputForCheckout = document.getElementById('quantity');
+
+    if (checkoutBtn && qtyInputForCheckout) {
+        checkoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const qty = qtyInputForCheckout.value;
+            
+            // Construct URL safely
+            try {
+                const url = new URL(checkoutBtn.href, window.location.origin);
+                url.searchParams.set('qty', qty);
+                // DEBUG: Alert is now ACTIVE
+                alert("Redirecting to checkout with quantity: " + qty); 
+                window.location.href = url.toString();
+            } catch (err) {
+                console.error("Error constructing checkout URL:", err);
+                // Fallback if URL construction fails
+                window.location.href = checkoutBtn.href + '&qty=' + qty;
+            }
+        });
+    }
+    
+    if (thumbnailList) {
+        // Simple scroll implementation
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        thumbnailList.addEventListener('mousedown', (e) => {
+            isDown = true;
+            thumbnailList.classList.add('active');
+            startX = e.pageX - thumbnailList.offsetLeft;
+            scrollLeft = thumbnailList.scrollLeft;
+        });
+        thumbnailList.addEventListener('mouseleave', () => {
+            isDown = false;
+            thumbnailList.classList.remove('active');
+        });
+        thumbnailList.addEventListener('mouseup', () => {
+            isDown = false;
+            thumbnailList.classList.remove('active');
+        });
+        thumbnailList.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - thumbnailList.offsetLeft;
+            const walk = (x - startX) * 3; // scroll-fast
+            thumbnailList.scrollLeft = scrollLeft - walk;
+        });
+    } 
     </script>
 
 
