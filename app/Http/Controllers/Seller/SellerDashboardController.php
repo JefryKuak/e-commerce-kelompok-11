@@ -3,25 +3,50 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
-use App\Models\Store;
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class SellerDashboardController extends Controller
 {
-public function index()
-{
-    $store = Store::where('user_id', Auth::id())->first();
+    // Dashboard utama seller (butuh toko verified)
+    public function index()
+    {
+        $user  = Auth::user();
+        $store = $user->store;
 
-    // kalau toko belum dibuat
-    if (!$store) {
-        return redirect()->route('seller.store.create')
-            ->with('warning', 'Silakan buat toko terlebih dahulu.');
+        // Kalau entah gimana nggak punya toko, arahkan ke register
+        if (!$store) {
+            return redirect()
+                ->route('seller.store.create')
+                ->with('error', 'Kamu belum memiliki toko. Daftarkan toko dulu ya.');
+        }
+
+        // Safety: kalau belum verified, lempar ke waiting
+        if (!$store->is_verified) {
+            return redirect()->route('seller.waiting');
+        }
+
+        // Nanti di sini kamu bisa kirim data statistik, pesanan, dsb
+        return view('seller.dashboard.dashboard', compact('store'));
     }
 
-    // produk berdasarkan store_id
-    $productCount = Product::where('store_id', $store->id)->count();
+    // Halaman "Menunggu Verifikasi"
+    public function waitingVerification()
+    {
+        $user  = Auth::user();
+        $store = $user->store;
 
-    return view('seller.dashboard', compact('store', 'productCount'));
-}
+        // Kalau belum punya toko, balik ke form register
+        if (!$store) {
+            return redirect()->route('seller.store.create');
+        }
+
+        // Kalau SUDAH diverifikasi, langsung lempar ke dashboard
+        if ($store->is_verified) {
+            return redirect()
+                ->route('seller.dashboard')
+                ->with('success', 'Toko kamu sudah diverifikasi. Selamat berjualan di Techly!');
+        }
+
+        return view('seller.dashboard.waiting-verification', compact('store'));
+    }
 }

@@ -14,56 +14,54 @@
 </head>
 
 <body>
-    <ul class="nav-links">
-        {{-- Pendaftaran Toko --}}
-        <li>
-            <a href="{{ route('seller.store.register') }}"
-                class="nav-link {{ request()->routeIs('seller.store.register') ? 'active' : '' }}">
-                Pendaftaran Toko
+    {{-- Navbar --}}
+    <nav class="seller-navbar">
+
+        <div class="nav-left">
+            <a href="user.index" class="nav-logo">
+                <img src="{{ asset('img/logo-techly.png') }}" class="logo-img" alt="Techly Logo">
             </a>
-        </li>
+        </div>
 
-        {{-- Pesanan --}}
-        {{--
-    <li>
-        <a href="{{ route('seller.orders.index') }}"
-            class="nav-link {{ request()->routeIs('seller.orders.*') ? 'active' : '' }}">
-            Pesanan
-        </a>
-    </li>
-    --}}
+        <ul class="nav-links">
+            <li>
+                <a href="{{ route('seller.store.create') }}"
+                    class="nav-link {{ request()->routeIs('seller.store.create') ? 'active' : '' }}">
+                    Pendaftaran Toko
+                </a>
+            </li>
 
-        {{-- Saldo Toko --}}
-        {{--
-    <li>
-        <a href="{{ route('seller.balance.index') }}"
-            class="nav-link {{ request()->routeIs('seller.balance.*') ? 'active' : '' }}">
-            Saldo Toko
-        </a>
-    </li>
-    --}}
 
-        {{-- Penarikan Saldo --}}
-        {{--
-    <li>
-        <a href="{{ route('seller.withdraw.index') }}"
-            class="nav-link {{ request()->routeIs('seller.withdraw.*') ? 'active' : '' }}">
-            Penarikan Saldo
-        </a>
-    </li>
-    --}}
+            {{-- <li>
+                <a href="{{ route('seller.orders.index') }}"
+                    class="nav-link {{ request()->routeIs('seller.orders.*') ? 'active' : '' }}">
+                    Pesanan
+                </a>
+            </li>
 
-        {{-- Manajemen Toko --}}
-        {{--
-    <li>
-        <a href="{{ route('seller.manage.index') }}"
-            class="nav-link {{ request()->routeIs('seller.manage.*') ? 'active' : '' }}">
-            Manajemen Toko
-        </a>
-    </li>
-    --}}
-    </ul>
+            <li>
+                <a href="{{ route('seller.balance.index') }}"
+                    class="nav-link {{ request()->routeIs('seller.balance.*') ? 'active' : '' }}">
+                    Saldo Toko
+                </a>
+            </li>
 
+            <li>
+                <a href="{{ route('seller.withdraw.index') }}"
+                    class="nav-link {{ request()->routeIs('seller.withdraw.*') ? 'active' : '' }}">
+                    Penarikan Saldo
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('seller.manage.index') }}"
+                    class="nav-link {{ request()->routeIs('seller.manage.*') ? 'active' : '' }}">
+                    Manajemen Toko
+                </a>
+            </li> --}}
+        </ul>
+
+    </nav>
     {{-- Konten Halaman --}}
     <main class="seller-content">
         @yield('content')

@@ -88,6 +88,17 @@
                             <img src="{{ asset('img/user-icon.svg') }}" alt="Profile" class="profile-icon" />
                             <div class="profile-dropdown" id="profileDropdown">
                                 <a href="{{ route('profile.edit') }}">Profile</a>
+
+                                {{-- Kalau user BELUM punya toko → tampilkan "Buka Toko" --}}
+                                @if (!auth()->user()->store)
+                                    <a href="{{ route('seller.store.create') }}">Buka Toko</a>
+                                @endif
+
+                                {{-- (Optional) kalau sudah punya & sudah verified → tombol ke dashboard seller --}}
+                                @if (auth()->user()->isSeller())
+                                    <a href="{{ route('seller.dashboard') }}">Dashboard Seller</a>
+                                @endif
+
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit">Logout</button>
@@ -570,7 +581,7 @@
             function applyFullFilter() {
                 const keyword = searchInput ? (searchInput.value || '').toLowerCase().trim() : '';
                 const selectedCategory = filterCategoryRight ? (filterCategoryRight.value || '').toLowerCase()
-                .trim() : '';
+                    .trim() : '';
                 const min = (minPriceInput && minPriceInput.value !== '') ? parseFloat(minPriceInput.value) : 0;
                 const max = (maxPriceInput && maxPriceInput.value !== '') ? parseFloat(maxPriceInput.value) :
                     Infinity;

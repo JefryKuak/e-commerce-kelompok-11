@@ -13,7 +13,7 @@
 
         <!-- Password -->
         <div>
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Sandi')" />
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
                 required autocomplete="current-password" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -30,7 +30,7 @@
                             text-blue-600 focus:ring-blue-500 align-middle" />
 
                 <span class="text-gray-700 text-sm leading-none align-middle">
-                    Remember me
+                    Ingat saya
                 </span>
 
             </label>
@@ -40,19 +40,19 @@
         <!-- Login Button -->
         <div class="mt-4 flex justify-center">
             <x-primary-button class="px-5 py-2 text-center">
-                {{ __('Log in') }}
+                {{ __('Masuk') }}
             </x-primary-button>
         </div>
 
       <!-- Forgot Password + Register -->
         <div class="auth-footer">
             <a href="{{ route('password.request') }}">
-                {{ __('Forgot your password?') }}
+                {{ __('Lupa sandi anda?') }}
             </a>
 
             <div class="register-row">
-                <span>{{ __("Don't have an account?") }}</span>
-                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                <span>{{ __("Belum punya akun?") }}</span>
+                <a href="{{ route('register') }}">{{ __('Daftar') }}</a>
             </div>
         </div>
     </form>

@@ -9,10 +9,18 @@
 @section('content')
 
 <div class="register-wrapper">
+
+    {{-- KIRI: Ilustrasi --}}
     <div class="register-left">
-        <h2 class="store-title">Registrasi Toko</h2>
+        <img src="{{ asset('img/element-web/shop-regist-store.svg') }}"
+             alt="Ilustrasi Registrasi Toko"
+             class="register-illustration">
     </div>
+
+    {{-- KANAN: Judul + Form --}}
     <div class="register-right">
+        <h2 class="store-title">Registrasi Toko</h2>
+
         <div class="store-card">
             <form action="{{ route('seller.store.store') }}" method="POST" enctype="multipart/form-data" class="store-form">
                 @csrf

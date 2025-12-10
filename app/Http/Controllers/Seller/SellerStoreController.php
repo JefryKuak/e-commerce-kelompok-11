@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class SellerStoreController extends Controller
 {
@@ -37,6 +38,7 @@ class SellerStoreController extends Controller
         Store::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
+            'slug' => Str::slug($request->name) . '-' . uniqid(), // <— TAMBAHKAN INI
             'about' => $request->about,
             'phone' => $request->phone,
             'address_id' => $request->address_id,
@@ -47,7 +49,6 @@ class SellerStoreController extends Controller
             'is_verified' => 0,
         ]);
 
-        return redirect()->route('seller.dashboard.dashboard')
-            ->with('success', 'Toko berhasil didaftarkan! Menunggu verifikasi admin.');
+        return redirect()->route('seller.waiting')->with('success', 'Toko berhasil didaftarkan! Menunggu verifikasi admin.');
     }
 }
